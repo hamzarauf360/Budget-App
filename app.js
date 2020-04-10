@@ -1,4 +1,4 @@
-var months, date, budget_title, budget_income, budget_value, budget_expenses, add, item, incomeItems, expenseItems, desBox, valueBox, typeChecker /*, newID*/ , id;
+var item, desBox, valueBox, incomeItems, expenseItem, add, typeChecker;
 
 init();
 
@@ -27,8 +27,9 @@ document.querySelector(add + 'btn').addEventListener("click", function() {
       }
     }
   }
-  clearTextBox();
-
+  desBox.value = '';
+  valueBox.value = '';
+  desBox.focus();
 
 });
 
@@ -41,15 +42,14 @@ document.querySelector(add + 'btn').addEventListener("click", function() {
   }
 }*/
 
-function clearTextBox() {
-  desBox.value = '';
-  valueBox.value = '';
-  desBox.focus();
 
-}
+
+
 
 
 function init() {
+  var months, date, budget_title, budget_income, budget_value, budget_expenses /*, newID*/ , id;
+
   months = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   date = new Date();
   incomeItems = [];
