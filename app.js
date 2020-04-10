@@ -1,4 +1,4 @@
-var months, date, budget_title, budget_income, budget_value, budget_expenses, add, item, incomeItems, expenseItems, desBox, valueBox, typeChecker /*, newID*/ , id, currentBalance;
+var months, date, budget_title, budget_income, budget_value, budget_expenses, add, item, incomeItems, expenseItems, desBox, valueBox, typeChecker /*, newID*/ , id;
 
 init();
 
@@ -59,7 +59,6 @@ function init() {
   budget_income = document.querySelector('.budget__income--value');
   budget_expenses = '.budget__expenses';
   add = '.add__';
-  currentBalance = 0;
 
   document.querySelector(budget_title + '--month').textContent = months[date.getMonth()] + ' ' + date.getFullYear();
   budget_value.textContent = '+ 0.00';
@@ -126,7 +125,7 @@ function init() {
     var budget_expenseVal = document.querySelector(budget_expenses + '--value');
     var budget_expensePer = document.querySelector(budget_expenses + '--percentage');
 
-    var totalIncome, currentExpense, percentage; //, length;
+    var totalIncome, currentExpense, percentage, currentBalance, itemPercentage; //, length;
 
 
     totalIncome = this.sumIncome(); //4000
@@ -134,8 +133,8 @@ function init() {
     if (totalIncome >= overallincome) {
       currentBalance = totalIncome - overallincome; //1,0.5,0.1,0.01,0
 
-      percentage = Math.floor((overallincome / totalIncome) * 100); // 3999/4000*100
-
+      percentage = Math.round((overallincome / totalIncome) * 100); // 3999/4000*100
+      itemPercentage = Math.round((this.value / totalIncome) * 100); // to send to expense list fcuntion
       budget_expenseVal.textContent = '-' + overallincome.toLocaleString("en", {
         useGrouping: false,
         minimumFractionDigits: 2
